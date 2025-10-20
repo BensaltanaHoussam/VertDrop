@@ -1,4 +1,4 @@
-package com.smartlogi.entities;
+package com.vertdrop.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
