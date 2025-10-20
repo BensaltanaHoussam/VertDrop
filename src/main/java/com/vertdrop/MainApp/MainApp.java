@@ -1,6 +1,9 @@
+
 package com.vertdrop.MainApp;
 
+import com.vertdrop.entities.Colis;
 import com.vertdrop.entities.Livreur;
+import com.vertdrop.services.ColisService;
 import com.vertdrop.services.LivreurService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,21 +14,24 @@ public class MainApp {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        LivreurService service = (LivreurService) context.getBean("livreurService");
+        ColisService colisService = context.getBean(ColisService.class);
+        LivreurService livreurService = context.getBean(LivreurService.class);
 
-        // 1️⃣ Create a Livreur
-        Livreur l1 = new Livreur("Houssam", "Bensaltana", "Moto", "0612345678");
-        service.save(l1);
-        System.out.println("Saved: " + l1);
+        Livreur livreur = livreurService.save(new Livreur("Ali", "Benz", "Van", "0611122233"));
 
-        // 2️⃣ List all Livreurs
-        List<Livreur> allLivreurs = service.findAll();
-        System.out.println("All Livreurs: " + allLivreurs);
+        Colis colis1 = new Colis("Ahmed", "123 Main St", 5.0, "Préparation", livreur);
+        colis1 = colisService.save(colis1);
+        System.out.println("Saved Colis: " + colis1);
 
-        // 3️⃣ Find by ID
-        Livreur found = service.findById(l1.getId());
-        System.out.println("Found by ID: " + found);
+        System.out.println("All Colis: " + colisService.findAll());
+
+        Colis foundColis = colisService.findById(colis1.getId());
+        System.out.println("Found Colis: " + foundColis);
+
+        List<Colis> colisDeAli = colisService.findByLivreurId(livreur.getId());
+        System.out.println("Colis assigned to Ali: " + colisDeAli);
 
 
+        ((ClassPathXmlApplicationContext) context).close();
     }
 }

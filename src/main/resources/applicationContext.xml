@@ -59,5 +59,7 @@
     <bean id="livreurService" class="com.vertdrop.services.LivreurService">
         <constructor-arg ref="livreurRepository"/>
     </bean>
-
+    <bean id="ColisService" class="com.vertdrop.services.ColisService">
+        <constructor-arg ref="colisRepository"/>
+    </bean>
 </beans>
