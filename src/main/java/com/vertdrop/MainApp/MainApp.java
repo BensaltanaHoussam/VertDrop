@@ -26,6 +26,8 @@ public class MainApp {
         Livreur found = service.findById(l1.getId());
         System.out.println("Found by ID: " + found);
 
-
+        // 4️⃣ Delete by ID
+        service.deleteById(l1.getId());
+        System.out.println("Deleted Livreur with ID: " + l1.getId());
     }
 }
