@@ -53,4 +53,11 @@
 
     <!-- @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+
+    <bean id="livreurService" class="com.vertdrop.services.LivreurService">
+        <constructor-arg ref="livreurRepository"/>
+    </bean>
+
 </beans>
