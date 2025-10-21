@@ -35,4 +35,13 @@ public class ColisService {
     public List<Colis> findByLivreurId(Long livreurId) {
         return colisRepository.findByLivreurId(livreurId);
     }
+
+    public Colis saveUnique(Colis colis){
+        var existing = colisRepository.findByDestinataireAndAdresse(colis.getDestinataire(), colis.getAdresse());
+        if(existing.isPresent()){
+            System.out.println("Colis already exists: " + existing.get());
+            return existing.get();
+        }
+        return colisRepository.save(colis);
+    }
 }

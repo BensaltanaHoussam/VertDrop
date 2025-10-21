@@ -7,10 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ColisRepository extends JpaRepository<Colis, Long> {
 
     List<Colis> findByLivreurId(Long livreurId);
+
+    Optional<Colis> findByDestinataireAndAdresse(String destinataire, String adresse);
 
 }

@@ -14,11 +14,15 @@ public class Colis {
     private String adresse;
     private double poids;
 
+
+    @Enumerated(EnumType.ORDINAL)
     private StatusColis status;
 
     @ManyToOne
     @JoinColumn(name = "livreur_id")
     private Livreur livreur;
+
+    public Colis() {}
 
     public Colis(String destinataire, String adresse, double poids, StatusColis status, Livreur livreur) {
         this.destinataire = destinataire;
