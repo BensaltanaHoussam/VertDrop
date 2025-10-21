@@ -3,6 +3,7 @@ package com.vertdrop.MainApp;
 
 import com.vertdrop.entities.Colis;
 import com.vertdrop.entities.Livreur;
+import com.vertdrop.entities.StatusColis;
 import com.vertdrop.services.ColisService;
 import com.vertdrop.services.LivreurService;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +20,7 @@ public class MainApp {
 
         Livreur livreur = livreurService.save(new Livreur("Ali", "Benz", "Van", "0611122233"));
 
-        Colis colis1 = new Colis("Ahmed", "123 Main St", 5.0, "Préparation", livreur);
+        Colis colis1 = new Colis("Ahmed", "123 Main St", 5.0, StatusColis.PREPARATION, livreur);
         colis1 = colisService.save(colis1);
         System.out.println("Saved Colis: " + colis1);
 

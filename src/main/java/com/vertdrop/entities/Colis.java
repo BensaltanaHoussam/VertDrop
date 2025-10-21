@@ -13,34 +13,65 @@ public class Colis {
     private String destinataire;
     private String adresse;
     private double poids;
-    private String statut;
+
+    private StatusColis status;
 
     @ManyToOne
     @JoinColumn(name = "livreur_id")
     private Livreur livreur;
 
-    public Colis() {}
-
-    public Colis(String destinataire, String adresse, double poids, String statut, Livreur livreur) {
+    public Colis(String destinataire, String adresse, double poids, StatusColis status, Livreur livreur) {
         this.destinataire = destinataire;
         this.adresse = adresse;
         this.poids = poids;
-        this.statut = statut;
+        this.status = status;
         this.livreur = livreur;
     }
 
-    // Getters and setters
-    public Long getId() { return id; }
-    public String getDestinataire() { return destinataire; }
-    public void setDestinataire(String destinataire) { this.destinataire = destinataire; }
-    public String getAdresse() { return adresse; }
-    public void setAdresse(String adresse) { this.adresse = adresse; }
-    public double getPoids() { return poids; }
-    public void setPoids(double poids) { this.poids = poids; }
-    public String getStatut() { return statut; }
-    public void setStatut(String statut) { this.statut = statut; }
-    public Livreur getLivreur() { return livreur; }
-    public void setLivreur(Livreur livreur) { this.livreur = livreur; }
+    // Getters et setters
+    public Long getId() {
+        return id;
+    }
+
+    public String getDestinataire() {
+        return destinataire;
+    }
+
+    public void setDestinataire(String destinataire) {
+        this.destinataire = destinataire;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public double getPoids() {
+        return poids;
+    }
+
+    public void setPoids(double poids) {
+        this.poids = poids;
+    }
+
+    public StatusColis getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusColis status) {
+        this.status = status;
+    }
+
+    public Livreur getLivreur() {
+        return livreur;
+    }
+
+    public void setLivreur(Livreur livreur) {
+        this.livreur = livreur;
+    }
 
     @Override
     public String toString() {
@@ -49,7 +80,7 @@ public class Colis {
                 ", destinataire='" + destinataire + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", poids=" + poids +
-                ", statut='" + statut + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
