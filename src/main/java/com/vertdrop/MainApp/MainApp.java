@@ -1,10 +1,7 @@
-
 package com.vertdrop.MainApp;
 
-import com.vertdrop.entities.Colis;
-import com.vertdrop.entities.Livreur;
-import com.vertdrop.services.ColisService;
-import com.vertdrop.services.LivreurService;
+import com.vertdrop.entities.*;
+import com.vertdrop.services.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,24 +11,34 @@ public class MainApp {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        ColisService colisService = context.getBean(ColisService.class);
-        LivreurService livreurService = context.getBean(LivreurService.class);
+        LivreurService livreurService = (LivreurService) context.getBean("livreurService");
+        ColisService colisService = (ColisService) context.getBean("colisService");
 
-        Livreur livreur = livreurService.save(new Livreur("Ali", "Benz", "Van", "0611122233"));
+        // Create livreur
+        Livreur livreur = livreurService.save(new Livreur("Yassine", "Renault", "Kangoo", "0622334455"));
 
-        Colis colis1 = new Colis("Ahmed", "123 Main St", 5.0, "Préparation", livreur);
-        colis1 = colisService.save(colis1);
-        System.out.println("Saved Colis: " + colis1);
+        // Create colis
+        Colis colis1 = new Colis("Ahmed", "Rue Hassan II", 4.5, StatusColis.PREPARATION, livreur);
+        Colis colis2 = new Colis("Samira", "Bd Mohammed V", 2.0, StatusColis.PREPARATION, livreur);
 
-        System.out.println("All Colis: " + colisService.findAll());
+        colisService.saveUnique(colis1);
+        colisService.saveUnique(colis2);
 
-        Colis foundColis = colisService.findById(colis1.getId());
-        System.out.println("Found Colis: " + foundColis);
+        // List colis for livreur
+        List<Colis> colisList = colisService.findByLivreurId(livreur.getId());
+        System.out.println("📦 Colis de " + livreur.getNom() + ": " + colisList);
 
-        List<Colis> colisDeAli = colisService.findByLivreurId(livreur.getId());
-        System.out.println("Colis assigned to Ali: " + colisDeAli);
+        // Update status of colis
+        colis1.setStatus(StatusColis.EN_TRANSIT);
+        colisService.save(colis1);
+        System.out.println("🚚 Colis en transit: " + colis1);
 
+        colis1.setStatus(StatusColis.LIVRE);
+        colisService.save(colis1);
+        System.out.println("✅ Colis livré: " + colis1);
 
-        ((ClassPathXmlApplicationContext) context).close();
+        // Try duplicate
+        Colis duplicate = new Colis("Ahmed", "Rue Hassan II", 4.5, StatusColis.PREPARATION, livreur);
+        colisService.saveUnique(duplicate);
     }
 }

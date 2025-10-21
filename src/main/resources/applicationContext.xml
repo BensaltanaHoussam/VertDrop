@@ -17,6 +17,9 @@
     <!-- Scan des composants de l'app -->
     <context:component-scan base-package="com.vertdrop"/>
 
+    <context:component-scan base-package="com.vertdrop.services"/>
+
+
 
     <!-- JPA Repositories -->
     <jpa:repositories base-package="com.vertdrop.repositories"/>
@@ -59,7 +62,7 @@
     <bean id="livreurService" class="com.vertdrop.services.LivreurService">
         <constructor-arg ref="livreurRepository"/>
     </bean>
-    <bean id="ColisService" class="com.vertdrop.services.ColisService">
+    <bean id="colisService" class="com.vertdrop.services.ColisService">
         <constructor-arg ref="colisRepository"/>
     </bean>
 </beans>
