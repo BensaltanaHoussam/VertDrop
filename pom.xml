@@ -30,12 +30,6 @@
             <version>3.1.1</version>
         </dependency>
 
-        <!-- Jakarta Persistence API (for @Entity, @Id, etc.) -->
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
 
         <!-- Hibernate (JPA provider) -->
         <dependency>

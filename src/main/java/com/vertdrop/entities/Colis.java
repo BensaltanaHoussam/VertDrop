@@ -15,7 +15,7 @@ public class Colis {
     private double poids;
 
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private StatusColis status;
 
     @ManyToOne
