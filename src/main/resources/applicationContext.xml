@@ -14,6 +14,9 @@
         http://www.springframework.org/schema/data/jpa
         https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+    <context:component-scan base-package="com.vertdrop"/>
+    <context:component-scan base-package="com.vertdrop.services"/>
+
 
 
     <!-- JPA Repositories -->
@@ -60,4 +63,10 @@
     <bean id="colisService" class="com.vertdrop.services.ColisService">
         <constructor-arg ref="colisRepository"/>
     </bean>
+
+    <bean id="livreurController" class="com.vertdrop.controllers.LivreurController">
+        <constructor-arg ref="livreurService"/>
+    </bean>
+
+
 </beans>
