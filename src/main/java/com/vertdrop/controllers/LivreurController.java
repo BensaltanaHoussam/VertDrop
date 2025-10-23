@@ -9,12 +9,11 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/livreurs")
+@RequestMapping("/livreurs")
 public class LivreurController {
 
     private final LivreurService livreurService;
 
-    // constructor injection (Spring will autowire)
     public LivreurController(LivreurService livreurService) {
         this.livreurService = livreurService;
     }

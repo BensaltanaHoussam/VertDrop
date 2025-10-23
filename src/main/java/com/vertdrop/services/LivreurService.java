@@ -4,8 +4,15 @@ import com.vertdrop.entities.Livreur;
 import com.vertdrop.repositories.LivreurRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LivreurService {
+
+    public Optional<Livreur> findByIdOpt(Long id) {
+        return livreurRepository.findById(id);
+    }
+    public List<Livreur> getAll() { return livreurRepository.findAll(); }
+
 
     private LivreurRepository livreurRepository;
 

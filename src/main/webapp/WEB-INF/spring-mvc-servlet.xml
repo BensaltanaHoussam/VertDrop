@@ -16,9 +16,4 @@
 
     <!-- registers message converters (Jackson) and argument resolvers -->
     <mvc:annotation-driven />
-
-    <!-- Optional: configure static resources if you ever need them -->
-    <mvc:resources mapping="/static/**" location="/static/"/>
-
-    <!-- Optional: JSON date formatting etc. you can configure here -->
 </beans>
