@@ -1,5 +1,6 @@
 package com.vertdrop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Livreur {
     private String telephone;
 
     @OneToMany(mappedBy = "livreur", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Colis> colis;
 
     public Livreur() {}
@@ -31,6 +33,11 @@ public class Livreur {
 
     // Getters and setters
     public Long getId() { return id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
     public String getPrenom() { return prenom; }

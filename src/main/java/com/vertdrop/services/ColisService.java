@@ -1,16 +1,13 @@
 package com.vertdrop.services;
 
-
 import com.vertdrop.entities.Colis;
-import com.vertdrop.entities.Livreur;
 import com.vertdrop.repositories.ColisRepository;
 
 import java.util.List;
 
-
 public class ColisService {
 
-    private ColisRepository colisRepository;
+    private final ColisRepository colisRepository;
 
     public ColisService(ColisRepository colisRepository) {
         this.colisRepository = colisRepository;
@@ -36,9 +33,9 @@ public class ColisService {
         return colisRepository.findByLivreurId(livreurId);
     }
 
-    public Colis saveUnique(Colis colis){
+    public Colis saveUnique(Colis colis) {
         var existing = colisRepository.findByDestinataireAndAdresse(colis.getDestinataire(), colis.getAdresse());
-        if(existing.isPresent()){
+        if (existing.isPresent()) {
             System.out.println("Colis already exists: " + existing.get());
             return existing.get();
         }
